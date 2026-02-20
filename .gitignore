@@ -1,0 +1,11 @@
+node_modules/
+build/
+.env
+.env.*
+!.env.example
+pnpm-lock.yaml
+data/*
+
+Dockerfile
+docker-compose.yml
+

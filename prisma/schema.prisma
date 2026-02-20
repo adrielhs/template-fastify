@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id                     Int         @id @default(autoincrement())
+  name                   String
+  email                  String      @unique
+  whatsapp               String
+  avatar                 String?
+  status                 Boolean     @default(true)
+  password_hash          String?
+  valid_mail_token       String?     @db.VarChar(255)
+  password_reset_token   String?     @db.VarChar(255)
+  password_reset_expires DateTime?   @db.Timestamptz(6)
+  mail_ok                Boolean     @default(false)
+  createdAt              DateTime    @default(now()) @db.Timestamptz(6)
+  updatedAt              DateTime    @default(now()) @db.Timestamptz(6)
+  profile                Profiles?   @relation(fields: [id_profile], references: [id])
+  tokens                 Tokens[]
+  schedules              Schedules[] @relation("ScheduleUserId")
+
+  @@map("users")
+}
+
+model Tokens {
+  id        Int      @id @default(autoincrement())
+  token     String
+  createdAt DateTime @default(now())
+
+  user    Users @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  @@map("tokens")
+}
+
+}

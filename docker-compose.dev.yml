@@ -1,0 +1,47 @@
+services:
+  postgres:
+    container_name: anything-pg
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: P@ssW0rd
+      POSTGRES_DB: anything
+      PGDATA: /data/postgres
+    restart: always
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./data/pg:/data/postgres
+
+  redis:
+    container_name: redis-formar
+    image: redis:alpine
+    ports: 
+      - "6379:6379"
+    restart: always
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+          VERSION: "${VERSION}"
+    image: ${IMAGE_NAME}:${VERSION}
+    container_name: ${IMAGE_NAME}
+    ports:
+        - ${PORT}:${PORT}
+
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: P@ssW0rd
+      POSTGRES_DB: anything
+    depends_on:
+      - postgres
+      - redis
+
+
+    tty: true   

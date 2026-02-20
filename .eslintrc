@@ -1,0 +1,16 @@
+{
+  "extends": "@rocketseat/eslint-config/node",
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-useless-constructor": "off",
+    "camelcase": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": false,
+        "singleQuote": false,
+        "endOfLine": "auto"
+      }
+    ]
+  }
+}
