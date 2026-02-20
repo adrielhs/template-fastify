@@ -29,7 +29,7 @@ Um template completo de API backend com autenticação, autorização, fila de j
 ### 1. Clone o repositório
 
 ```bash
-git clone <seu-repositorio>
+git clone https://github.com/adrielhs/template-fastify.git
 cd template-fastify
 ```
 
@@ -37,6 +37,8 @@ cd template-fastify
 
 ```bash
 pnpm install
+or
+npm install
 ```
 
 ### 3. Configure o ambiente
@@ -446,7 +448,10 @@ MIT
 
 ## 👨‍💻 Autor
 
-Seu Nome - [@seu-github](https://github.com/seu-github)
+Adriel Fernando Hipolito Silva - [@adrielhs] (https://github.com/adrielhs)
+
+
+Template baseado no template criado e publicado pelo Rodrigo Bighetti (https://github.com/robighetti)
 
 ---
 
